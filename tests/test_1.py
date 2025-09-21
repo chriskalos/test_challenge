@@ -32,7 +32,7 @@ def test_shipping(page: Page):
 
     # Check that we reached the next checkout page
     expect(page.locator('.checkout_info')).to_be_enabled
-    logger.info("Current location: checkout page 1")
+    logger.info("Current location: checkout page")
 
     # Find all the form_group elements and count them
     form_inputs = page.locator('.form_group input')
@@ -64,6 +64,10 @@ def test_shipping(page: Page):
             # Expect an error message every time an argument is not filled
             expect(page.locator('data-test=error')).to_be_enabled
             logger.debug(f"Error message present. Continuing.")
+
+    # Check that we're on the summary page
+    expect(page.locator('.summary_info'))
+    logger.info("Current location: summary page")
 
     # Finish test by completing the whole checkout process
     logger.info("Finishing test - clicking button with id 'finish'")
