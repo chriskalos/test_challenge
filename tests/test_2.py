@@ -83,3 +83,5 @@ def test_products(page: Page):
     expect(page.locator('.cart_item').nth(0).locator('.inventory_item_price')).to_have_text(selected_prices[0])
     expect(page.locator('.cart_item').nth(1).locator('.inventory_item_name')).to_have_text(selected_items[1])
     expect(page.locator('.cart_item').nth(1).locator('.inventory_item_price')).to_have_text(selected_prices[1])
+
+    logger.info(f"Finished test 2\n")

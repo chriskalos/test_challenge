@@ -72,3 +72,5 @@ def test_shipping(page: Page):
     # Finish test by completing the whole checkout process
     logger.info("Finishing test - clicking button with id 'finish'")
     page.locator('id=finish').click()
+
+    logger.info(f"Finished test 1\n")

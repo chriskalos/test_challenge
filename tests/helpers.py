@@ -31,5 +31,5 @@ def login(page: Page):
     page.locator('id=login-button').click()
     
     # Check that we reached the products page
-    expect(page.locator('id=page_wrapper')).to_be_enabled
+    expect(page.locator('id=page_wrapper')).to_be_enabled # Note: Each time I need to ensure we're on a new page, my strategy is to find a unique element on that page and check that it is present.
     logger.info("Current location: products")

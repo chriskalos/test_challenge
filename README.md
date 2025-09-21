@@ -20,7 +20,6 @@ In the root directory of the cloned repo: `python3 -m pytest tests --slowmo 1000
 
 #### Optional
 `--headed` can be used to make the Chromium browser window appear on your screen as Playwright completes the tests. This is opposed to the default "headless" behavior.
-`--s
 
 ## Language and Libraries
 
