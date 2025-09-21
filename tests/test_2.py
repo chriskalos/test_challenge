@@ -1,15 +1,11 @@
 from playwright.sync_api import Page, expect
+import helpers
 import random
 
 # todo: Logging
 
 def test_products(page: Page):
-    page.goto("https://www.saucedemo.com/")
-
-    # Login sequence
-    page.locator('id=user-name').fill('standard_user')
-    page.locator('id=password').fill('secret_sauce')
-    page.locator('id=login-button').click()
+    helpers.login(page)
 
     # Check that we reached the products page
     expect(page.locator('id=page_wrapper')).to_be_enabled
