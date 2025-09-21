@@ -18,6 +18,7 @@ def test_login(page: Page):
     page.locator('id=add-to-cart-sauce-labs-backpack').click()
     # Go to the cart page
     page.locator('data-test=shopping-cart-link').click()
+    expect(page.locator('id=cart_contents_container')).to_be_enabled()
     
     # Check that the item was actually added to the cart
     expect(page.locator('data-test=inventory-item')).to_be_enabled
@@ -41,7 +42,7 @@ def test_login(page: Page):
             else:
                 form_inputs.nth(i).fill('')
         
-        # Click the Checkout button
+        # Click the Continue button
         page.locator('id=continue').click()
 
         if all(combo):
@@ -51,4 +52,5 @@ def test_login(page: Page):
             # Expect an error message every time an argument is not filled
             expect(page.locator('data-test=error')).to_be_enabled
 
-    # Finish test by completing the whole checkout process perhaps
+    # Finish test by completing the whole checkout process
+    page.locator('id=finish').click()
