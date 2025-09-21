@@ -1,14 +1,12 @@
 from playwright.sync_api import Page, expect
 import helpers
 import random
+import logging
 
-# todo: Logging
+logger = logging.getLogger(__name__)
 
 def test_products(page: Page):
     helpers.login(page)
-
-    # Check that we reached the products page
-    expect(page.locator('id=page_wrapper')).to_be_enabled
 
     # Add two random products to the cart
     # find inventory_list and count all its inventory_item items
