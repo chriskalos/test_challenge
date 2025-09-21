@@ -1,6 +1,8 @@
 from playwright.sync_api import Page, expect
 from itertools import product
 
+# todo: Logging and standardize across tests
+
 def test_login(page: Page):
     page.goto("https://www.saucedemo.com/")
 
@@ -48,3 +50,5 @@ def test_login(page: Page):
         else:
             # Expect an error message every time an argument is not filled
             expect(page.locator('data-test=error')).to_be_enabled
+
+    # Finish test by completing the whole checkout process perhaps
