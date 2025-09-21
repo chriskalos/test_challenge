@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect
+from itertools import product
 
 def test_login(page: Page):
     page.goto("https://www.saucedemo.com/")
@@ -23,13 +24,27 @@ def test_login(page: Page):
     # Press the Checkout button
     page.locator('id=checkout').click()
 
-    # Check that we reached the checkout page
-    expect(page.locator('id=checkout_info_container')).to_be_enabled
+    # Check that we reached the next checkout page
+    expect(page.locator('.checkout_info')).to_be_enabled
 
-    # Click the Checkout button before filling in any containers
-    page.locator('id=continue').click()
+    # Find all the form_group elements and count them
+    form_inputs = page.locator('.form_group input')
+    count = form_inputs.count()
 
-    # Expect an error message every time an argument is not filled
-    expect(page.locator('data-test=error')).to_be_enabled
+    # Fill and unfill fields in a binary manner to test all possible combinations
+    for combo in product([0,1], repeat=count):
+        for i, fill_flag in enumerate(combo):
+            if fill_flag:
+                form_inputs.nth(i).fill('Test')
+            else:
+                form_inputs.nth(i).fill('')
+        
+        # Click the Checkout button
+        page.locator('id=continue').click()
 
-    # page.locator('id=first-name').fill('FirstName')
+        if all(combo):
+            # All fields were filled so we expect the next page to appear
+            expect(page.locator('id=checkout_summary_container')).to_be_enabled
+        else:
+            # Expect an error message every time an argument is not filled
+            expect(page.locator('data-test=error')).to_be_enabled
