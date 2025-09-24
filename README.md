@@ -23,7 +23,7 @@ In the root directory of the cloned repo: `python3 -m pytest tests --slowmo 1000
 
 ## Implementation Notes
 
-For this assessment, I chose to use Python, with pytest and Playwright for testing and browser automation respectively. Logs are automatically created in a file called "tests_log.txt", which is created automatically. This behavior can be adjusted by configuring the parameters within `conftest.py`.
+For this assessment, I chose to use Python, with pytest and Playwright for testing and browser automation respectively. Logs are automatically created in a file called "tests_log.txt", which is created automatically. This behavior can be adjusted by configuring the parameters within `helpers.py`.
 
 ### Logging and Monitoring
 Both test plans include comprehensive logging mechanisms that capture:
